@@ -58,7 +58,8 @@ if __name__ == '__main__':
         rotX=-2.3
     )
 
-    worldColor(rgbColorTheme[NUMBER_OF_OBJECTS])
+    #worldColor(rgbColorTheme[NUMBER_OF_OBJECTS])
+    worldColor(meanColorFromThemeRgb(rgbColorTheme))
 
     changeRenderConfig()
 

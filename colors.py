@@ -226,3 +226,16 @@ def generateColorSchemeRgb(rgb, numbers=5, method="gold"):
             colors.append(goldenRatioRgb(colors[-1]))
 
     return colors
+
+"""
+Takes a list of rgb colors, and compute the mean
+"""
+def meanColorFromThemeRgb(theme):
+    def mean(l):
+        return sum(l) / len(l)
+
+    r = mean([rgb[0] for rgb in theme ])
+    g = mean([rgb[1] for rgb in theme ])
+    b = mean([rgb[2] for rgb in theme ])
+
+    return (r,g,b,1)
