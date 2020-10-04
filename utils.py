@@ -22,13 +22,15 @@ def changeRenderConfig():
     bpy.context.scene.render.resolution_y = 1080
     bpy.context.scene.frame_current = randint(1,250)
 
-def createCamera(mesh_nameList):
-    bpy.context.scene.cursor.location = (0, 200, 200)
+def createCamera(mesh_nameList, locX=0, locY=100, locZ=100):
+    bpy.context.scene.cursor.location = (locX, locY, locZ)
     bpy.ops.object.camera_add()
 
     bpy.context.scene.camera = bpy.context.active_object
-    track_to = bpy.ops.object.constraint_add(type="TRACK_TO")
     camera = bpy.context.active_object
+    #camera.data.lens = 21
+
+    track_to = bpy.ops.object.constraint_add(type="TRACK_TO")
     camera.constraints['Track To'].influence = 0.75
     camera.constraints['Track To'].target = bpy.data.objects[choice(mesh_nameList)]
     bpy.context.scene.frame_set(0)

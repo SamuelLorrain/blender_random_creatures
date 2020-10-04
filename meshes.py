@@ -8,9 +8,9 @@ def createMesh(name, color):
     lattice_name = name + "_lattice"
     # Create mesh
     seed = randint(0,1000)
-    z_axis_transform = uniform(0,2)
-    y_axis_transform = uniform(0,2)
-    x_axis_transform = uniform(0,2)
+    z_axis_transform = uniform(1,3)
+    y_axis_transform = uniform(1,3)
+    x_axis_transform = uniform(1,3)
     cuts = randint(10,100)
     fractal = randint(10,30)
 
@@ -29,9 +29,9 @@ def createMesh(name, color):
 
     bpy.ops.transform.resize(
         value=(
-            uniform(0,2),
-            uniform(0,2),
-            uniform(0,2),
+            uniform(1,3),
+            uniform(1,3),
+            uniform(1,3),
         ),
         constraint_axis=(True, True, True)
     )
@@ -81,9 +81,9 @@ def createMesh(name, color):
     #    obj.data.materials.append(mat)
 
 def randomMoveCurrentMesh(factor=1):
-    x = uniform(-50*factor,50*factor)
-    y = uniform(-50*factor,50*factor)
-    z = uniform(-50*factor,50*factor)
+    x = uniform(-25*factor,25*factor)
+    y = uniform(-15*factor,25*factor)
+    z = uniform(-15*factor,25*factor)
     axis = choice(['x','y','z'])
     if axis == 'x':
         bpy.ops.transform.translate(value=(x,0,0))
@@ -95,11 +95,15 @@ def randomMoveCurrentMesh(factor=1):
 def randomRotateCurrentMesh(factor=1):
     bpy.ops.transform.rotate(value=uniform(-5*factor,5*factor), orient_axis=choice(['X','Y','Z']))
 
-def createLightPlane(mat_name="Light", rotX=0, rotY=0, rotZ=0):
-    move3DCursor(3,10)
-    bpy.context.scene.cursor.location = (0, -300, 200)
-    bpy.ops.mesh.primitive_plane_add(size=200, rotation=(rotX, rotY, rotZ))
-    bpy.ops.transform.rotate(value=2.3, orient_axis='X')
+def createLightPlane(mat_name="Light",
+                     locX=0,
+                     locY=-75,
+                     locZ=50,
+                     rotX=2.3):
+    #move3DCursor(3,10)
+    bpy.context.scene.cursor.location = (locX, locY, locZ)
+    bpy.ops.mesh.primitive_plane_add(size=100)
+    bpy.ops.transform.rotate(value=rotX, orient_axis='X')
     plane = bpy.context.active_object
 
     mat = bpy.data.materials.new(mat_name)

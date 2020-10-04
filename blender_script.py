@@ -47,10 +47,16 @@ if __name__ == '__main__':
     #Restore cursor location
     bpy.context.scene.cursor.location = savedCursorLocation
 
-    plane = createLightPlane()
+    # get camera location, consistent with constraint
+    cameraLocation = camera.matrix_world.to_translation()
 
-    #duplicate plane
-    #put it behind camera
+    plane1 = createLightPlane()
+    plane2 = createLightPlane(
+        locX=cameraLocation.x + 50,
+        locY=cameraLocation.y + 50,
+        locZ=cameraLocation.z + 50,
+        rotX=-2.3
+    )
 
     worldColor(rgbColorTheme[NUMBER_OF_OBJECTS])
 
