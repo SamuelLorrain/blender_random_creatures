@@ -97,8 +97,8 @@ def randomRotateCurrentMesh(factor=1):
 
 def createLightPlane(mat_name="Light",
                      locX=0,
-                     locY=-75,
-                     locZ=50,
+                     locY=-100,
+                     locZ=75,
                      rotX=2.3):
     #move3DCursor(3,10)
     bpy.context.scene.cursor.location = (locX, locY, locZ)
