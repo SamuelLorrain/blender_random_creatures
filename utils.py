@@ -14,13 +14,13 @@ def worldColor(color):
 def changeRenderConfig():
     bpy.context.scene.render.engine = 'CYCLES'
     bpy.context.scene.cycles.device = 'GPU'
-    bpy.context.scene.cycles.samples = randint(1,4)
+    bpy.context.scene.cycles.samples = choice([1,2,4,8])
     bpy.context.scene.cycles.preview_samples = 1
     bpy.context.scene.render.use_motion_blur = True
     bpy.context.scene.render.motion_blur_shutter = uniform(.7, 1)
     bpy.context.scene.render.resolution_x = 1080
     bpy.context.scene.render.resolution_y = 1080
-    bpy.context.scene.frame_current = randint(1,250)
+    bpy.context.scene.frame_current = randint(20,250)
 
 def createCamera(mesh_nameList, locX=0, locY=100, locZ=100):
     bpy.context.scene.cursor.location = (locX, locY, locZ)

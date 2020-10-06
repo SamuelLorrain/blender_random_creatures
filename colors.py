@@ -215,15 +215,31 @@ It takes 3 values:
 - sub
 - gold (golden ratio)
 """
-def generateColorSchemeRgb(rgb, numbers=5, method="gold"):
+def generateColorSchemeRgb(rgb, numbers=5, method="gold", **kwargs):
     colors = [rgb]
-    for _ in range(0,numbers):
-        if method == "add":
-            colors.append(addMixRgb(rgb, generateRandomRgb()))
-        elif method == "sub":
-            colors.append(subMixRgb(rgb, generateRandomRgb()))
-        elif method == "gold":
-            colors.append(goldenRatioRgb(colors[-1]))
+    if kwargs.get('shuffle') == True:
+        for _ in range(0,numbers):
+            colorMethod = choice([1,2,3])
+            if colorMethod == 1:
+                colors.append(addMixRgb(rgb, generateRandomRgb()))
+            elif colorMethod == 2:
+                colors.append(subMixRgb(rgb, generateRandomRgb()))
+            elif colorMethod == 3:
+                if(kwargs.get('ratio')):
+                    colors.append(goldenRatioRgb(colors[-1], kwargs['ratio']))
+                else:
+                    colors.append(goldenRatioRgb(colors[-1]))
+    else:
+        for _ in range(0,numbers):
+            if method == "add":
+                colors.append(addMixRgb(rgb, generateRandomRgb()))
+            elif method == "sub":
+                colors.append(subMixRgb(rgb, generateRandomRgb()))
+            elif method == "gold":
+                if(kwargs.get('ratio')):
+                    colors.append(goldenRatioRgb(colors[-1], kwargs['ratio']))
+                else:
+                    colors.append(goldenRatioRgb(colors[-1]))
 
     return colors
 
