@@ -2,6 +2,8 @@ import bpy
 from random import randint, sample
 import sys
 
+# TODO add materialize like color handler
+
 sys.path.append("/home/samuel/Documents/Prog/Python/blender_random_creatures")
 
 from colors import *
